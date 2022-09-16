@@ -1,1 +1,0 @@
-web: gunicorn sca.wsgi --log-file –
