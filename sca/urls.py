@@ -25,10 +25,5 @@ urlpatterns = [
     path('', include('aplic.urls')),
 
 ]
-from django.contrib import admin
-from django.urls import path
 
-urlpatterns = [
-    path('restrito/', admin.site.urls),
 
-]
