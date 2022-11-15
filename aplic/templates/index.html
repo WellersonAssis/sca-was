@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 
 <html class="no-js" lang="pt-br">
@@ -9,7 +10,7 @@
     <title>EduGrids - Education & Online Course HTML Template.</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.svg' %} " />
+    <link rel="shortcut icon" type="image/x-icon" href= "{% static 'images/favicon.svg' %}" />
     <!-- Place favicon.ico in the root directory -->
 
     <!-- Web Font -->
@@ -69,7 +70,7 @@
                         <div class="toolbar-login">
                             <div class="button">
                                 <a href="registration.html">Create an Account</a>
-                                <a href="/restrito" class="btn">Log In</a>
+                                <a href="login.html" class="btn">Log In</a>
                             </div>
                         </div>
                     </div>
@@ -82,8 +83,8 @@
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="{% url 'index' %} ">
-                            <img src="{% static 'images/logo/logo.svg' %}" alt="Logo" >
+                        <a class="navbar-brand" href="index.html">
+                            <img src="{% static 'images/logo/logo.svg' %} " alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -94,7 +95,7 @@
                         </button>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item"><a class="active" href="{% url 'index' %} ">Home</a></li>
+                                <li class="nav-item"><a class="active" href="index.html">Home</a></li>
                                 <li class="nav-item"><a href="javascript:void(0)">Courses</a></li>
                                 <li class="nav-item"><a href="javascript:void(0)">Events</a></li>
                                 <li class="nav-item">
@@ -103,7 +104,7 @@
                                         aria-controls="navbarSupportedContent" aria-expanded="false"
                                         aria-label="Toggle navigation">Pages</a>
                                     <ul class="sub-menu collapse" id="submenu-1-4">
-                                        <li class="nav-item"><a href="{% url 'sobre' %}">About Us</a></li>
+                                        <li class="nav-item"><a href="about-us.html">About Us</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a href="javascript:void(0)">Blog</a></li>
@@ -128,7 +129,7 @@
     <section class="hero-area">
         <div class="hero-slider">
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('{% static 'images/hero/slider-bg1.jpg' %});">
+            <div class="hero-inner overlay" style="background-image: url({% static 'images/hero/slider-bg1.jpg' %} );">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -141,7 +142,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
+                                        <a href="about-us.html" class="btn">Learn More</a>
                                         <a href="courses-grid.html" class="btn alt-btn">Our Courses</a>
                                     </div>
                                 </div>
@@ -152,7 +153,7 @@
             </div>
             <!--/ End Single Slider -->
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('{% static 'images/hero/slider-bg2.jpg');">
+            <div class="hero-inner overlay" style="background-image: url({% static 'images/hero/slider-bg2.jpg' %} );">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -165,7 +166,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
+                                        <a href="about-us.html" class="btn">Learn More</a>
                                         <a href="events-grid.html" class="btn alt-btn">Our Events</a>
                                     </div>
                                 </div>
@@ -176,7 +177,7 @@
             </div>
             <!--/ End Single Slider -->
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('{% static 'images/hero/slider-bg3.jpg' %}); ">
+            <div class="hero-inner overlay" style="background-image: url({% static 'images/hero/slider-bg3.jpg' %} );">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -189,7 +190,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
+                                        <a href="about-us.html" class="btn">Learn More</a>
                                         <a href="#" class="btn alt-btn">Our Courses</a>
                                     </div>
                                 </div>
@@ -219,7 +220,7 @@
                             <p class="qote wow fadeInUp" data-wow-delay=".8s">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, do eius mod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
-                                <a href="{% url 'sobre' %}" class="btn">Read More</a>
+                                <a href="about-us.html" class="btn">Read More</a>
                                 <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
                                     class="glightbox video btn"> Play Video<i class="lni lni-play"></i></a>
                             </div>
@@ -577,7 +578,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="{% url 'index' %} "><img src="{% static 'images/logo/logo.svg' %} " alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'images/logo/logo.svg' %} " alt="Logo"></a>
                             </div>
                             <p>Nemo enim enim voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
                                 consequ magni dolores eos qui ratione.</p>
@@ -728,7 +729,6 @@
             'autoplayVideos': true,
         });
     </script>
-
 </body>
 
 </html>
