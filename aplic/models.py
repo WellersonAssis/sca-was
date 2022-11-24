@@ -23,6 +23,9 @@ class Curso(models.Model):
 
     carga_horaria = models.IntegerField('Carga Horária')
 
+    imagem = StdImageField('Imagem', null=True, blank=True, upload_to=get_file_path,
+    variations={'thumb': {'width': 420, 'height': 260, 'crop': True}})
+
     class Meta:
         verbose_name = 'Curso'
 

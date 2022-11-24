@@ -72,4 +72,67 @@
      </section>
     <!-- SECTION TEACHER  -->
 
-{% endblock %}
+{% endblock %}]
+<div class="row">
+
+               {% for prof in professores %}
+
+                  <div class="col-lg-6 col-md-6 col-12">
+
+                     <div class="single-team wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+
+                        <div class="row">
+
+                           <div class="col-lg-5 col-12">
+
+                              <div class="image">
+
+                                 <img src="{{ prof.foto.thumb.url }}" alt="{{ prof.nome }}" alt="#">
+
+                              </div>
+
+                           </div>
+
+                           <div class="col-lg-7 col-12">
+
+                              <div class="info-head">
+
+                                 <div class="info-box">
+
+                                    <span class="designation">{{ prof.titulacao }}</span>
+
+                                    <h4 class="name"><a href="#">{{ prof.nome }}</a></h4>
+
+                                    <p>
+
+                                        {{ prof.curriculo }}
+
+                                    </p>
+
+                                 </div>
+
+                                 <ul class="social">
+
+                                    <li><a href="{{ prof.facebook }}"><i class="lni lni-facebook-filled"></i></a></li>
+
+                                    <li><a href="{{ prof.twitter }}"><i class="lni lni-twitter-original"></i></a></li>
+
+                                    <li><a href="{{ prof.linkedin }}"><i class="lni lni-linkedin-original"></i></a></li>
+
+                                    <li><a href="{{ prof.instagram }}"><i class="lni lni-instagram-original"></i></a></li>
+
+                                 </ul>
+
+                              </div>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               {% endfor %}
+
+           </div>
