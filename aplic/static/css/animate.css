@@ -3121,3 +3121,7 @@
   -webkit-animation-name: zoomOutUp;
   animation-name: zoomOutUp;
 }
+
+.wow {
+  visibility: hidden;
+}

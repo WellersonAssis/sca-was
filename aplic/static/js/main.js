@@ -1,79 +1,69 @@
-/*
-Template Name: EduGrids - Education & Online Course HTML Template.
-Author: GrayGrids
-*/
-
-(function () {
-    //===== Prealoder
-
-    window.onload = function () {
-        window.setTimeout(fadeout, 500);
-    }
-
-    function fadeout() {
-        document.querySelector('.preloader').style.opacity = '0';
-        document.querySelector('.preloader').style.display = 'none';
-    }
-
-    /*=====================================
-    Sticky
-    ======================================= */
-    window.onscroll = function () {
-        var header_navbar = document.querySelector(".navbar-area");
-        var sticky = header_navbar.offsetTop;
-
-        if (window.pageYOffset > sticky) {
-            header_navbar.classList.add("sticky");
-        } else {
-            header_navbar.classList.remove("sticky");
-        }
 
 
-    
 
-        // show or hide the back-top-top button
-        var backToTo = document.querySelector(".scroll-top");
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            backToTo.style.display = "flex";
-        } else {
-            backToTo.style.display = "none";
-        }
-    };
+$(function () {
+"use strict";
 
-    
-    // WOW active
-    new WOW().init();
 
-    
-
-    // for menu scroll 
-    var pageLink = document.querySelectorAll('.page-scroll');
-
-    pageLink.forEach(elem => {
-        elem.addEventListener('click', e => {
-            e.preventDefault();
-            document.querySelector(elem.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth',
-                offsetTop: 1 - 60,
-            });
-        });
-    });
-
-    
-      //===== mobile-menu-btn
-	let navbarToggler = document.querySelector(".mobile-menu-btn");
-	navbarToggler.addEventListener('click', function () {
-		navbarToggler.classList.toggle("active");
+	// data - background
+	$("[data-background]").each(function () {
+		$(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
 	});
 
-    //====== counter up 
-    var cu = new counterUp({
-        start: 0,
-        duration: 2000,
-        intvalues: true,
-        interval: 100,
-        append: " ",
-    });
-    cu.start();
+	// contact-form 
+	$(".contact-btn").on('click', function () {
+		$(".contact-wrapper").addClass("show");
+	});
+	$(".close").on('click', function () {
+		$(".contact-wrapper").removeClass("show");
+	});
 
-})();
+	// contact-form-28
+	$("#contact-btn").on('click', function () {
+		$("#contact-wrapper").addClass("show");
+	});
+	$(".close").on('click', function () {
+		$("#contact-wrapper").removeClass("show");
+	});
+	// subscribe-form-28
+	$("#subscribe-btn").on('click', function () {
+		$("#subscribe-wrapper").addClass("show");
+	});
+	$(".close").on('click', function () {
+		$("#subscribe-wrapper").removeClass("show");
+	});
+
+	// sidebar
+	$(".menu-toggle-btn").on('click', function () {
+		$(".sidebar").addClass("show");
+	});
+	$(".close").on('click', function () {
+		$(".sidebar").removeClass("show");
+	});
+
+	//Scroll top 
+	$(".scroll-top").click(function () {
+		$("html,body").animate({ scrollTop: 0 }, 1000);
+	});
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 180) { $(".scroll-top").fadeIn(); }
+		else {
+			$(".scroll-top").fadeOut();
+		}
+	});
+
+	//Countdown
+
+    $('[data-countdown]').each(function () {
+		var $this = $(this),
+			finalDate = $(this).data('countdown');
+		$this.countdown(finalDate, function (event) {
+			$this.html(event.strftime('<div class="countdown d-flex"><div class="single-count-content"><span class="count">%D</span><p class="text">Days</p></div><div class="single-count-content"><span class="count">%H</span><p class="text">Hours</p></div><div class="single-count-content"><span class="count">%M</span><p class="text">Minutes</p></div><div class="single-count-content"><span class="count">%S</span><p class="text">Seconds</p></div></div>'));
+		});
+	});
+
+	// WOW active
+	new WOW().init();
+
+});	
+

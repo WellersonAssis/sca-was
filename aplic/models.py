@@ -1,4 +1,5 @@
 from django.db import models
+from django.db import models
 
 # Create your models here.
 
@@ -16,123 +17,146 @@ def get_file_path(_instance, filename):
     return filename
 
 
-class Curso(models.Model):
-    nome = models.CharField('Nome', max_length=100)
+class Funcionario(models.Model):
 
-    descricao = models.TextField('Descrição', max_length=500)
+    codFunc = models.CharField('Código Funcionário', max_length=10)
 
-    carga_horaria = models.IntegerField('Carga Horária')
+    cpf = models.CharField('CPF', max_length=11)
 
-    imagem = StdImageField('Imagem', null=True, blank=True, upload_to=get_file_path,
-                variations={'thumb': {'width': 420, 'height': 260, 'crop': True}})
+    funcao = models.CharField('Função', max_length=20)
+
+    nome = models.CharField('Nome', max_length= 40)
 
     class Meta:
-        verbose_name = 'Curso'
+        verbose_name = 'Funcionário'
 
-        verbose_name_plural = 'Cursos'
+        verbose_name_plural = 'Funcionários'
+
+    def __str__(self):
+        return f"{self.nome} / {self.codFunc}"
+
+class Cliente(models.Model):
+
+    cnpj = models.CharField('CNPJ', max_length=18, help_text='Formato XX.XXX.XXX/XXXX-XX')
+
+    razaosocial = models.CharField('Razão social', max_length=50)
+
+    gerente = models.CharField('Pessoa responsável', max_length=50)
+
+    email = models.EmailField('E-mail da empresa', blank=True, max_length=200)
+
+
+    class Meta:
+        verbose_name = 'Cliente'
+
+        verbose_name_plural = 'Clientes'
+
+    def __str__(self):
+        return f"{self.razaosocial} / {self.cnpj}"
+
+
+class Servico(models.Model):
+
+    nivel = models.CharField('Nível',max_length=10)
+
+    nome = models.CharField('Nome', max_length=20)
+
+    valor = models.CharField('Valor', max_length=10)
+
+
+    class Meta:
+        verbose_name = 'Serviço'
+
+        verbose_name_plural = 'Serviços'
 
     def __str__(self):
         return self.nome
 
 
+class RelatoriodeRede(models.Model):
 
-class Pessoa(models.Model):
-    nome = models.CharField('Nome', max_length=100)
-    foto = StdImageField('Foto', null=True, blank=True, upload_to=get_file_path,
-                         variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
-    facebook = models.CharField('Facebook', blank=True, max_length=200)
-    linkedin = models.CharField('LinkedIn', blank=True, max_length=200)
-    twitter = models.CharField('Twitter', blank=True, max_length=200)
-    instagram = models.CharField('Instagram', blank=True, max_length=200)
+    razaosocial = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
+
+    descRede = models.TextField('Descrição de Rede', max_length=500)
+
+    numDispositivos = models.IntegerField('Dispositivos')
+
+    codFunc = models.ForeignKey(Funcionario, on_delete=models.DO_NOTHING)
+
+    emailEmpresa = models.EmailField('Email Cliente', max_length=30)
+
+    firewall = models.CharField('Firewall', max_length=20)
+
+    antivirus = models.CharField('Antivírus', max_length=20)
 
     class Meta:
-        abstract = True
+        verbose_name = 'Relatório de Rede'
 
-        verbose_name = 'Professor'
-
-        verbose_name_plural = 'Professores'
+        verbose_name_plural = 'Relatórios de Rede'
 
     def __str__(self):
-        return self.nome
+        return f"{self.razaosocial} / {self.descRede}"
 
 
-class Professor(Pessoa):
-    OPCOES = (
 
-        ('Doutorado', 'Doutorado'),
+class Contrato(models.Model):
 
-        ('Mestrado', 'Mestrado'),
+    codFunc = models.ForeignKey(Funcionario, on_delete=models.DO_NOTHING)
 
-        ('Especialização', 'Especialização'),
+    razaosocial = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
 
-        ('Graduação', 'Graduação'),
+    numero = models.CharField('Numero do Contrato', max_length=10)
 
-    )
+    nome = models.ForeignKey(Servico, on_delete=models.DO_NOTHING)
 
-    titulacao = models.CharField('Titulação', blank=True, max_length=100, choices=OPCOES)
 
-    curso = models.ForeignKey(Curso, null=True, on_delete=models.SET_NULL)
 
     class Meta:
-        verbose_name = 'Professor'
 
-        verbose_name_plural = 'Professores'
+        verbose_name = 'Contrato'
 
-
-class Aluno(Pessoa):
-    matricula = models.IntegerField('Matrícula', unique=True)
-
-    data_nascimento = models.DateField('Data de Nascimento', blank=True, null=True, help_text='Formato DD/MM/AAAA')
-
-    email = models.EmailField('E-mail', blank=True, max_length=200)
-
-    curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
-
-    class Meta:
-        verbose_name = 'Aluno'
-
-        verbose_name_plural = 'Alunos'
-
-
-class Disciplina(models.Model):
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-
-    nome = models.CharField('Nome', max_length=100)
-
-    carga_horaria = models.IntegerField('Carga horária')
-
-    obrigatoria = models.BooleanField('Obrigatória', default=True)
-
-    ementa = models.TextField('Ementa', blank=True, max_length=500)
-
-    bibliografia = models.TextField('Bibliografia', blank=True, max_length=500)
-
-    class Meta:
-        verbose_name = 'Disciplina'
-
-        verbose_name_plural = 'Disciplinas'
+        verbose_name_plural = 'Contratos'
 
     def __str__(self):
-        return self.nome
+        return self.numero
 
 
-class Turma(models.Model):
-    ano = models.IntegerField('Ano')
+class RelatorioFinal(models.Model):
 
-    semestre = models.IntegerField('Semestre')
+    codFunc = models.ForeignKey(Funcionario, on_delete=models.DO_NOTHING)
 
-    turma = models.CharField('Turma', max_length=10)
+    razaosocial = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
 
-    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+    emailEmpresa = models.EmailField('Email Cliente', max_length=30)
 
-    professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
-
-    alunos = models.ManyToManyField(Aluno)
+    descPentest = models.CharField('Descrição do Pentest', max_length=500)
 
     class Meta:
-        verbose_name = 'Turma'
+        verbose_name = 'Relatório Final'
 
-        verbose_name_plural = 'Turmas'
+        verbose_name_plural = 'Relatórios Finais'
 
     def __str__(self):
-        return f"{self.ano} / {self.semestre} / {self.turma} / {self.disciplina}"
+        return f"{self.cnpj} / {self.codFunc} / {self.descPentest}"
+
+
+class Reuniao(models.Model):
+
+    razaosocial = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
+
+    data = models.DateField('Data da reunião', blank=True, null=True, help_text='Formato DD/MM/AAAA')
+
+    hora = models.CharField('Horário', max_length=2, help_text='9h - 17h')
+
+    email = models.EmailField('E-mail do invite', blank=True, max_length=50)
+
+    codFunc = models.ForeignKey(Funcionario, on_delete=models.DO_NOTHING)
+
+
+    class Meta:
+        verbose_name = 'Reunião'
+
+        verbose_name_plural = 'Reuniões'
+
+        def __str__(self):
+            return f"{self.data} / {self.hora}"
